@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import ReactHtmlParser from 'react-html-parser'
 import Image from 'next/image'
 
 import { getCoinInfo } from '@/api/coingecko'
@@ -59,9 +58,9 @@ const CoinPage = () => {
               <span className="font-bold mb-4">
                 {coin?.name}
               </span>
-              <span className="w-full p-4 pb-0">
-                {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
-              </span>
+              <p className="w-full p-4 pb-0">
+                {coin?.description.en.split(". ")[0]}
+              </p>
               <div className="p-4 pt-0 md:flex md:justify-around md:items-center md:flex-col md:text-center md:space-y-4 md:mt-4">
                 <div className="flex">
                   <span className="font-bold">
