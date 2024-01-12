@@ -4,17 +4,17 @@ interface IGetCoinListProps {
   perPage?: number
 }
 
-interface IFetchCoinInfoProps {
+interface IGetCoinInfoProps {
   id: string
 }
 
-interface IFetchCoinMarketChartProps {
+interface IGetCoinMarketChartProps {
   id: string
   currency: string
   days?: number
 }
 
-interface IFetchTopCoinsByPriceChangeProps {
+interface IGetTopCoinsByPriceChangeProps {
   currency: string
 }
 
@@ -47,7 +47,7 @@ interface IGetCoinListResponse {
   last_updated: string
 }
 
-interface IFetchCoinInfoResponse {
+interface IGetCoinInfoResponse {
   id: string
   symbol: string
   name: string
@@ -70,15 +70,23 @@ interface IFetchCoinInfoResponse {
   description: {
     en: string
   }
+  market_cap_rank: number
+  market_data: {
+    current_price: { [key: string]: number }
+    market_cap: { [key: string]: number }
+  }
+  image: {
+    large: string
+  }
 }
 
-interface IFetchCoinMarketChartResponse {
+interface IGetCoinMarketChartResponse {
   prices: [number, number][]
   market_caps: [number, number][]
   total_volumes: [number, number][]
 }
 
-interface IFetchTopCoinsByPriceChangeResponse {
+interface IGetTopCoinsByPriceChangeResponse {
   id: string;
   symbol: string;
   name: string;
@@ -113,11 +121,11 @@ interface IFetchTopCoinsByPriceChangeResponse {
 
 export type {
   IGetCoinListProps,
-  IFetchCoinInfoProps,
-  IFetchCoinMarketChartProps,
-  IFetchTopCoinsByPriceChangeProps,
+  IGetCoinInfoProps,
+  IGetCoinMarketChartProps,
+  IGetTopCoinsByPriceChangeProps,
   IGetCoinListResponse,
-  IFetchCoinInfoResponse,
-  IFetchCoinMarketChartResponse,
-  IFetchTopCoinsByPriceChangeResponse,
+  IGetCoinInfoResponse,
+  IGetCoinMarketChartResponse,
+  IGetTopCoinsByPriceChangeResponse,
 }

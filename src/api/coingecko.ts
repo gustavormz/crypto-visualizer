@@ -4,13 +4,13 @@ import CONSTANTS from './config'
 
 import {
   IGetCoinListProps,
-  IFetchCoinInfoProps,
-  IFetchCoinMarketChartProps,
-  IFetchTopCoinsByPriceChangeProps,
+  IGetCoinInfoProps,
+  IGetCoinMarketChartProps,
+  IGetTopCoinsByPriceChangeProps,
   IGetCoinListResponse,
-  IFetchCoinInfoResponse,
-  IFetchCoinMarketChartResponse,
-  IFetchTopCoinsByPriceChangeResponse,
+  IGetCoinInfoResponse,
+  IGetCoinMarketChartResponse,
+  IGetTopCoinsByPriceChangeResponse,
 } from './icoingecko'
 
 const getCoinList = async ({
@@ -36,9 +36,9 @@ const getCoinList = async ({
   }
 }
 
-const fetchCoinInfo = async ({
+const getCoinInfo = async ({
   id,
-}: IFetchCoinInfoProps): Promise<IFetchCoinInfoResponse> => {
+}: IGetCoinInfoProps): Promise<IGetCoinInfoResponse> => {
   if (!id) {
     throw new Error('An ID is required.');
   }
@@ -50,7 +50,7 @@ const fetchCoinInfo = async ({
       // Return only the data from the response
       return response.data;
     } else {
-      throw new Error('Error fetching data from CoinGecko API');
+      throw new Error('Error geting data from CoinGecko API');
     }
   } catch (error) {
     console.error('Error while making a request to the CoinGecko API:', error);
@@ -58,11 +58,11 @@ const fetchCoinInfo = async ({
   }
 };
 
-const fetchCoinMarketChart = async ({
+const getCoinMarketChart = async ({
   id,
   currency,
   days = 365,
-}: IFetchCoinMarketChartProps): Promise<IFetchCoinMarketChartResponse> => {
+}: IGetCoinMarketChartProps): Promise<IGetCoinMarketChartResponse> => {
   if (!id || !currency || isNaN(days) || days <= 0) {
     throw new Error('Invalid parameters. Please provide a valid ID, currency, and a positive number of days.')
   }
@@ -73,7 +73,7 @@ const fetchCoinMarketChart = async ({
     if (response.status === 200) {
       return response.data
     } else {
-      throw new Error('Error fetching market chart data from CoinGecko API')
+      throw new Error('Error geting market chart data from CoinGecko API')
     }
   } catch (error) {
     console.error('Error while making a request to the CoinGecko API:', error)
@@ -81,9 +81,9 @@ const fetchCoinMarketChart = async ({
   }
 }
 
-const fetchTopCoinsByPriceChange = async ({
+const getTopCoinsByPriceChange = async ({
   currency,
-}: IFetchTopCoinsByPriceChangeProps): Promise<IFetchTopCoinsByPriceChangeResponse[]> => {
+}: IGetTopCoinsByPriceChangeProps): Promise<IGetTopCoinsByPriceChangeResponse[]> => {
   if (!currency) {
     throw new Error('Currency is required.')
   }
@@ -94,7 +94,7 @@ const fetchTopCoinsByPriceChange = async ({
     if (response.status === 200) {
       return response.data
     } else {
-      throw new Error('Error fetching top coins by price change from CoinGecko API')
+      throw new Error('Error geting top coins by price change from CoinGecko API')
     }
   } catch (error) {
     console.error('Error while making a request to the CoinGecko API:', error)
@@ -104,7 +104,7 @@ const fetchTopCoinsByPriceChange = async ({
 
 export {
   getCoinList,
-  fetchCoinInfo,
-  fetchCoinMarketChart,
-  fetchTopCoinsByPriceChange,
+  getCoinInfo,
+  getCoinMarketChart,
+  getTopCoinsByPriceChange,
 }
