@@ -13,10 +13,8 @@ import CryptoNameCell from './components/CryptoNameCell'
 import CryptoValueCell from './components/CryptoValueCell'
 import CryptoProfitCell from './components/CryptoProfitCell'
 
-import coinsData from './data'
-
 const CryptosTable = () => {
-  const [coins, setCoins] = useState<IGetCoinListResponse[]>(coinsData)
+  const [coins, setCoins] = useState<IGetCoinListResponse[]>([])
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState("")
 
